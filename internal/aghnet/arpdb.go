@@ -118,19 +118,20 @@ func (ns *neighs) reset(with []Neighbor) {
 
 // Command ARPDB
 
-// parseFunc parses the text from sc as if it'd be an output of some ARP-related
-// command.  lenHint is a hint for the size of the allocated slice of Neighbors.
-type parseFunc func(sc *bufio.Scanner, lenHint int) (ns []Neighbor)
+// parseNeighsFunc parses the text from sc as if it'd be an output of some
+// ARP-related command.  lenHint is a hint for the size of the allocated slice
+// of Neighbors.
+type parseNeighsFunc func(sc *bufio.Scanner, lenHint int) (ns []Neighbor)
 
-// runcmdFunc is the function that runs some command and returns its output
+// runCmdFunc is the function that runs some command and returns its output
 // wrapped to be a io.Reader.
-type runcmdFunc func() (r io.Reader, err error)
+type runCmdFunc func() (r io.Reader, err error)
 
 // cmdARPDB is the implementation of the ARPDB that uses command line to
 // retrieve data.
 type cmdARPDB struct {
-	parse  parseFunc
-	runcmd runcmdFunc
+	parse  parseNeighsFunc
+	runcmd runCmdFunc
 	ns     *neighs
 }
 

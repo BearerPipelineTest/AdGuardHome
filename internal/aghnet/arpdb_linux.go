@@ -25,7 +25,7 @@ func newARPDB() (arp *arpdbs) {
 		ns: make([]Neighbor, 0),
 	}
 
-	var parseF parseFunc
+	var parseF parseNeighsFunc
 	if aghos.IsOpenWrt() {
 		parseF = parseArpAWrt
 	} else {

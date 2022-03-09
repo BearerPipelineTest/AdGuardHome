@@ -13,6 +13,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+// testdata is the filesystem containing data for testing the package.
 var testdata fs.FS = os.DirFS("./testdata")
 
 func TestMain(m *testing.M) {

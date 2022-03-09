@@ -122,6 +122,8 @@ func (ns *neighs) reset(with []Neighbor) {
 // command.  lenHint is a hint for the size of the allocated slice of Neighbors.
 type parseFunc func(sc *bufio.Scanner, lenHint int) (ns []Neighbor)
 
+// runcmdFunc is the function that runs some command and returns its output
+// wrapped to be a io.Reader.
 type runcmdFunc func() (r io.Reader, err error)
 
 // cmdARPDB is the implementation of the ARPDB that uses command line to
@@ -188,6 +190,8 @@ type arpdbs struct {
 	last int
 }
 
+// newARPDBs returns a properly initialized *arpdbs.  It begins refreshing from
+// the first of arps.
 func newARPDBs(arps ...ARPDB) (arp *arpdbs) {
 	return &arpdbs{
 		arps: arps,

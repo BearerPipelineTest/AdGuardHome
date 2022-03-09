@@ -54,7 +54,7 @@ func HaveAdminRights() (bool, error) {
 
 // MaxCmdOutputSize is the maximum length of performed shell command output in
 // bytes.
-const MaxCmdOutputSize = 2 * 1024
+const MaxCmdOutputSize = 64 * 1024
 
 // RunCommand runs shell command.
 func RunCommand(command string, arguments ...string) (code int, output string, err error) {
